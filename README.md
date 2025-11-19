@@ -33,7 +33,7 @@ Go to Claude settings > Developer tab. Click on Edit config, which will point to
   "mcpServers": {
     "mock_company_data": {
       "command": "<system python filepath>",
-      "args": ["<system filepath to the server from this repository>/mcp-server-demo/server.py"],
+      "args": ["<project_root>/server.py"],
       "env": {
         "PYTHONPATH": "<system filepath to this repository>r"
       }
