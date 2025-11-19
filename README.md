@@ -14,8 +14,6 @@ cd MCP-Server
 ```
 python3.10 -m venv .venv
 source .venv/bin/activate   # On macOS/Linux
-# or on Windows:
-# .venv\Scripts\activate
 ```
 
 #### Install dependencies
@@ -35,7 +33,7 @@ Go to Claude settings > Developer tab. Click on Edit config, which will point to
   "mcpServers": {
     "mock_company_data": {
       "command": "<system python filepath>",
-      "args": ["<system filepath to the server from this repository>/MCP Server/server.py"],
+      "args": ["<system filepath to the server from this repository>/mcp-server-demo/server.py"],
       "env": {
         "PYTHONPATH": "<system filepath to this repository>r"
       }
@@ -45,6 +43,42 @@ Go to Claude settings > Developer tab. Click on Edit config, which will point to
 ```
 Quit and reopen Claude after saving these changes.
 
+## What This Project Offers
+The idea behind this particular MCP server is that we have an API that can fetch data about a company, customers, and sales. We want to expose these operations to the MCP server connected to Claude so that we don’t have to execute them from this API ourselves. 
+
+There are 4 exposed MCP development tools, get_sales_summary(), get_customer_info(id), list_customers(), and post_report(title, content) and they are highlighted in the diagram below.   
+
+```
+┌─────────────────────────────┐
+│          MCP Server         │
+│       (FastMCP + Python)    │
+└──────────────┬──────────────┘
+               │ uses tools
+               ▼
+   ┌────────────────────────────────┐
+   │          Available Tools       │
+   ├────────────────────────────────┤
+   │ 1. get_sales_summary()         │
+   │    → Returns simulated sales   │
+   │      stats (date, total sales, │
+   │      region, top product,      │
+   │      growth %)                 │
+   │                                │
+   │ 2. get_customer_info(id)       │
+   │    → Returns info for a        │
+   │      specific customer         │
+   │                                │
+   │ 3. list_customers()            │
+   │    → Returns all customers     │
+   │                                │
+   │ 4. post_report(title, content) │
+   │    → Saves a JSON report to    │
+   │      temp folder               │
+   └────────────────────────────────┘
+               │
+               ▼
+   Claude ↔ MCP Client ↔ Tools
+```
 
 ## Prompt Examples:
 - **List MCP Tools**: List all the tools you have access to through the connected MCP server and describe what each one does.

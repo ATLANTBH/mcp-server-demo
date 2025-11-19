@@ -13,12 +13,12 @@ def get_sales_summary():
 
 def get_customer_info(customer_id: int):
     """Simulate fetching a single customer's data."""
-    fake_customers = {
+    customers = {
         1: {"name": "Alice", "region": "Europe", "purchases": 12},
         2: {"name": "Bob", "region": "North America", "purchases": 7},
         3: {"name": "Carla", "region": "Asia", "purchases": 15},
     }
-    return fake_customers.get(customer_id, {"error": "Customer not found"})
+    return customers.get(customer_id, {"error": "Customer not found"})
 
 def list_customers():
     """Simulate fetching a list of all customers."""
