@@ -1,4 +1,4 @@
 .venv
 __pycache__
 logs/mock_company_server.log
-reports/20251119_143613_Daily_Sales_Report_-_November_19,_2025.json
+reports/*
