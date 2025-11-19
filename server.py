@@ -1,12 +1,13 @@
 import logging
 import sys
 import os
-import tempfile
 from fastmcp import FastMCP
 from api import data_api, report_api
 
-# Use a writable temp folder for logs
-LOG_DIR = tempfile.gettempdir()
+PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
+LOG_DIR = os.path.join(PROJECT_ROOT, "logs")
+os.makedirs(LOG_DIR, exist_ok=True)
+
 LOG_FILE = os.path.join(LOG_DIR, "mock_company_server.log")
 
 logging.basicConfig(
@@ -20,8 +21,7 @@ logging.basicConfig(
 
 mcp = FastMCP("MockCompanyDataServer")
 
-# ===== Development Tools =====
-
+# ===== MCP Tools =====
 @mcp.tool()
 def get_sales_summary() -> dict:
     """Fetch the latest sales summary from the database."""
