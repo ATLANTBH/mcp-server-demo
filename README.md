@@ -1,4 +1,4 @@
-# MCP Server
+# mcp-server-demo
 This repository is a simple MCP example. It contains an MCP server implementation in Python, using FastMCP library and offers setup for the suggested client, Claude.
 
 ## Setup
